@@ -20,13 +20,15 @@ h1 {
     color: #ff0000; /* Red Accent */
 }
 
-/* Video Player Styling */
 #video {
     background: #000;
     border: 3px solid #333;
     border-radius: 8px;
     margin-bottom: 30px;
-    max-width: 90%; /* মোবাইলে সুন্দর দেখাবে */
+    width: 100%; 
+    max-width: 800px;  
+    height: auto;      
+    
     box-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
 
