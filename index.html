@@ -22,7 +22,13 @@
 
   </header>
   <h4>এই সাইটে আরো ৮০+ চ্যানেল যোগ করা হবে খুব দ্রুত।</h4>
-  <video id="video" controls autoplay playsinline></video><br><br>
+<video id="video" controls autoplay playsinline></video>
+
+  <div id="iframeContainer" style="display:none;">
+    <div class="iframe-wrapper">
+      <iframe id="iframePlayer" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
+    </div>
+  </div>
 
   <div id="bt">
 
@@ -105,29 +111,140 @@
     <h3>10.BanglaVision</h3>
 
   </button>
- </button>
 
     <button onclick="playStream('https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8')">
 
     <img src="https://cdn.tvpassport.com/image/station/240x135/channel-i-bangla.png">
 
-    <h3>11.BanglaVision</h3>
+    <h3>11.Channel I</h3>
 
   </button>
-   </button>
 
     <button onclick="playStream('https://byphdgllyk.gpcdn.net/hls/deeptotv/0_1/index.m3u8')">
 
     <img src="https://upload.wikimedia.org/wikipedia/bn/thumb/0/05/%E0%A6%A6%E0%A7%80%E0%A6%AA%E0%A7%8D%E0%A6%A4_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg/1200px-%E0%A6%A6%E0%A7%80%E0%A6%AA%E0%A7%8D%E0%A6%A4_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg.png">
 
-    <h3>12.BanglaVision</h3>
+    <h3>12.Dipto TV</h3>
 
   </button>
       <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
 
     <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
 
-    <h3>13.BanglaVision</h3>
+    <h3>13.Duronto TV</h3>
+
+  </button>
+
+      <button onclick="playStream('http://208.86.19.13:81/514.stream/index.m3u8')">
+
+    <img src="https://www.deshitv.com/images//bangla_logo/DeshTV24-BanglaLogo.png">
+
+    <h3>14.Deshi TV</h3>
+
+  </button>
+      <button onclick="playStream('https://catchup.yuppcdn.net/amazonv2/36/preview/starjalsha/master/chunklist.m3u8')">
+
+    <img src="https://static.wikia.nocookie.net/logopedia/images/3/3c/Star_Jalsha_HD.png">
+
+    <h3>15.Star Jalsha SD</h3>
+
+  </button>
+      <button onclick="playStream('https://amg01448-samsungin-enterr10bangla-samsungin-ad-gg.amagi.tv/playlist/amg01448-samsungin-enterr10bangla-samsungin/playlist.m3u8')">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKM0rp0Vin41yZQYD7wiYPJUm-9fKXt9wgug&s">
+
+    <h3>16.Enter10 Bangla</h3>
+
+  </button>
+      <button onclick="playStream('https://amg01448-samsungin-news18bangla-samsungin-ad-qy.amagi.tv/playlist/amg01448-samsungin-news18bangla-samsungin/playlist.m3u8')">
+
+    <img src="https://images.news18.com/static-bengali/uploads/2025/02/Arjun-Neogi-2025-02-28T235637.807-2025-02-d75f819bc6407d0209f82d23f862c29f-3x2.jpg?im=Resize,width=3840,aspect=fit,type=normal">
+
+    <h3>16.News18 Bangla</h3>
+
+  </button>
+      <button onclick="playStream('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/tv9-bangla/main.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/bn/8/80/%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A7%AF_%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.jpg">
+
+    <h3>17.TV9 Bangla</h3>
+
+  </button>
+      <button onclick="playStream('http://foxkids-online.ru/hls/test_240p264kbs/index.m3u8')">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMu-xbimQvC2RcrcWjjm6OVunpji2AEMIefQ&s">
+
+    <h3>18.Kids Creation</h3>
+
+  </button>
+      <button onclick="playIframe('https://mtlivestream.com/hls/asian/ytlive/index.m3u8')">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5FE8t7xoHK40D0SBKto7sdZCuTw6cPoZ-fg&s">
+
+    <h3>19.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>20.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>21.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>22.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>23.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>24.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>25.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>26.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>27.Duronto TV</h3>
+
+  </button>
+      <button onclick="playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')">
+
+    <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png">
+
+    <h3>28.Duronto TV</h3>
 
   </button>
   </div>
