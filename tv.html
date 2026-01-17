@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple HLS Player</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
+    <style>
+      /* ড্রয়ারের প্রশস্ততা ঠিক করা */
+      .offcanvas {
+        width: 300px !important;
+      }
+
+      /* চ্যানেল বাটন স্টাইল */
+      .channel-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 5px;
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        transition: 0.3s;
+        text-align: left;
+      }
+      .channel-btn:hover {
+        background: #e9ecef;
+        transform: scale(1.02);
+      }
+      .channel-btn img {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        margin-right: 15px;
+        object-fit: contain;
+      }
+      .channel-btn h3 {
+        font-size: 16px;
+        margin: 0;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      class="p-2 bg-dark d-flex justify-content-between align-items-center"
+    >
+      <img
+        src="Untitled-1.png"
+        alt="Logo"
+        class="logo"
+        width="50"
+        height="50"
+      />
+      <button
+        class="btn btn-outline-light"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#myDrawer"
+        aria-controls="myDrawer"
+      >
+        ☰
+      </button>
+    </header>
+
+    <div class="container mt-3 text-center">
+      <div class="player-container">
+        <div class="video-wrapper-main">
+          <video
+            id="video"
+            style="width: 100%; max-width: 800px; background: #000"
+            controls
+            autoplay
+            playsinline
+            preload="auto"
+          ></video>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="myDrawer"
+      aria-labelledby="offcanvasLabel"
+    >
+      <div class="offcanvas-header border-bottom bg-light">
+        <h5 class="offcanvas-title" id="offcanvasLabel">চ্যানেল সমূহ</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="offcanvas-body">
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://ssl.com.bd/sites/default/files/BTV%20Logo%20Gallery.png"
+            alt="BTV"
+          />
+          <h3>1. BTV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://dl.dropbox.com/s/leielj83em5kg7h/somoy_news.png"
+            alt="Somoy TV"
+          />
+          <h3>2. Somoy TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://s4.gifyu.com/images/imagea02f4314e761661d.png"
+            alt="Ekattor TV"
+          />
+          <h3>3. Ekattor TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://dl.dropbox.com/s/puf12xv5flgbnz5/channel24_bd.png"
+            alt="Channel 24"
+          />
+          <h3>4. Channel 24</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://dl.dropbox.com/s/7xwwb8hetz3w8rp/independent_tv.png"
+            alt="Independent TV"
+          />
+          <h3>5. Independent TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://dl.dropbox.com/s/k7z1dsec1jfjbkn/jamuna_tv_bd.png"
+            alt="Jamuna TV"
+          />
+          <h3>6. Jamuna TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://dl.dropbox.com/s/4ldi1dp09s8o6bm/atn_news_bd.png"
+            alt="ATN News"
+          />
+          <h3>7. ATN News</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://s6.gifyu.com/images/image27cfa7002786c232.png"
+            alt="ATN Bangla"
+          />
+          <h3>8. ATN Bangla</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://www.ntvbd.com/sites/default/files/aggregator/2020/02/17/ntv-channel_0.jpg"
+            alt="NTV"
+          />
+          <h3>9. NTV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://s4.gifyu.com/images/image5c0bfa6b281be803.png"
+            alt="BanglaVision"
+          />
+          <h3>10. BanglaVision</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://cdn.tvpassport.com/image/station/240x135/channel-i-bangla.png"
+            alt="Channel I"
+          />
+          <h3>11. Channel I</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://byphdgllyk.gpcdn.net/hls/deeptotv/0_1/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/bn/thumb/0/05/%E0%A6%A6%E0%A7%80%E0%A6%AA%E0%A7%8D%E0%A6%A4_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg/1200px-%E0%A6%A6%E0%A7%80%E0%A6%AA%E0%A7%8D%E0%A6%A4_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg.png"
+            alt="Dipto TV"
+          />
+          <h3>12. Dipto TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream('https://tvsen4.aynaott.com/durontotv/index.m3u8')
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/d/d7/Duronto_TV_Logo.png"
+            alt="Duronto TV"
+          />
+          <h3>13. Duronto TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="playStream('http://208.86.19.13:81/514.stream/index.m3u8')"
+        >
+          <img
+            src="https://www.deshitv.com/images//bangla_logo/DeshTV24-BanglaLogo.png"
+            alt="Deshi TV"
+          />
+          <h3>14. Deshi TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://catchup.yuppcdn.net/amazonv2/36/preview/starjalsha/master/chunklist.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://static.wikia.nocookie.net/logopedia/images/3/3c/Star_Jalsha_HD.png"
+            alt="Star Jalsha SD"
+          />
+          <h3>15. Star Jalsha SD</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://amg01448-samsungin-enterr10bangla-samsungin-ad-gg.amagi.tv/playlist/amg01448-samsungin-enterr10bangla-samsungin/playlist.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKM0rp0Vin41yZQYD7wiYPJUm-9fKXt9wgug&s"
+            alt="Enter10 Bangla"
+          />
+          <h3>16. Enter10 Bangla</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://amg01448-samsungin-news18bangla-samsungin-ad-qy.amagi.tv/playlist/amg01448-samsungin-news18bangla-samsungin/playlist.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://images.news18.com/static-bengali/uploads/2025/02/Arjun-Neogi-2025-02-28T235637.807-2025-02-d75f819bc6407d0209f82d23f862c29f-3x2.jpg?im=Resize,width=3840,aspect=fit,type=normal"
+            alt="News18 Bangla"
+          />
+          <h3>17. News18 Bangla</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/tv9-bangla/main.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/bn/8/80/%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A7%AF_%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.jpg"
+            alt="TV9 Bangla"
+          />
+          <h3>18. TV9 Bangla</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'http://foxkids-online.ru/hls/test_240p264kbs/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMu-xbimQvC2RcrcWjjm6OVunpji2AEMIefQ&s"
+            alt="Kids Creation"
+          />
+          <h3>19. Kids Creation</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://bozztv.com/rongo/rongo-asiantvHD/tracks-v2a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5FE8t7xoHK40D0SBKto7sdZCuTw6cPoZ-fg&s"
+            alt="Aaian TV"
+          />
+          <h3>20. Aaian TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/globaltv.stream/tracks-v1a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/bn/2/2c/%E0%A6%8F%E0%A6%96%E0%A6%A8%E0%A7%87%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.png"
+            alt="Ekhon TV"
+          />
+          <h3>21. Ekhon TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://tvsen1.aynaott.com/PNEb3v2q6GBk/tracks-v1a1/mono.ts.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/9/9f/%E0%A6%9C%E0%A6%BF_%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE_%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%AB.svg"
+            alt="Zee Bangla"
+          />
+          <h3>22. Zee Bangla</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/boishakhitv-org.stream/tracks-v1a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/bn/1/1f/%E0%A6%AC%E0%A7%88%E0%A6%B6%E0%A6%BE%E0%A6%96%E0%A7%80_%E0%A6%9F%E0%A7%87%E0%A6%B2%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B6%E0%A6%A8%E0%A7%87%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg"
+            alt="Boishakhi TV"
+          />
+          <h3>23. Boishakhi TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/deshtv.stream/tracks-v1a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMuo3XyLBozwipcIU31qQAA2Hx0mgQTaLTHg&s"
+            alt="Desh TV"
+          />
+          <h3>24. Desh TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/dbcnews.stream/tracks-v1a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/%E0%A6%A1%E0%A6%BF%E0%A6%AC%E0%A6%BF%E0%A6%B8%E0%A6%BF_%E0%A6%A8%E0%A6%BF%E0%A6%89%E0%A6%9C%E2%80%93%E0%A6%8F%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg/1200px-%E0%A6%A1%E0%A6%BF%E0%A6%AC%E0%A6%BF%E0%A6%B8%E0%A6%BF_%E0%A6%A8%E0%A6%BF%E0%A6%89%E0%A6%9C%E2%80%93%E0%A6%8F%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg.png"
+            alt="DBC News"
+          />
+          <h3>25. DBC News</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/gazibdz.stream/tracks-v1a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/bn/thumb/c/c5/%E0%A6%97%E0%A6%BE%E0%A6%9C%E0%A7%80_%E0%A6%9F%E0%A7%87%E0%A6%B2%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B6%E0%A6%A8%E0%A7%87%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg/1200px-%E0%A6%97%E0%A6%BE%E0%A6%9C%E0%A7%80_%E0%A6%9F%E0%A7%87%E0%A6%B2%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B6%E0%A6%A8%E0%A7%87%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg.png"
+            alt="G TV"
+          />
+          <h3>26. G TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/anandatv.stream/tracks-v1a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Logo_of_Ananda_TV.svg/1200px-Logo_of_Ananda_TV.svg.png"
+            alt="Ananda TV"
+          />
+          <h3>27. Ananda TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/mytv-up-off.stream/playlist.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Logo_of_My_TV_%28Bangladesh%29.svg/1200px-Logo_of_My_TV_%28Bangladesh%29.svg.png"
+            alt="MyTV"
+          />
+          <h3>28. MyTV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream('https://tvsen3.aynaott.com/u3LkNQ7UHhFX/index.m3u8')
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Colors_Bangla.png"
+            alt="Colors Bangla"
+          />
+          <h3>29. Colors Bangla</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/news24local.stream/tracks-v1a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAn6TRLM0gawyjEKcr84Q1_DMMkBnNyN6-cw&s"
+            alt="News24"
+          />
+          <h3>30. News24</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://server.thelegitpro.in/rongeentv/rongeentv/tracks-v1a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://play-lh.googleusercontent.com/aB9kpZngTtp3usFm1i6X4E_9zBlCwq3b43LiVUEXfplqRK7Ye1y_CqSgkjWNXuhGPWqb"
+            alt="Rongeen TV"
+          />
+          <h3>31. Rongeen TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGhiA9P3vRCZCh5vAeynpC5z7krztgeQ1n3A&s"
+            alt="Sony Aath"
+          />
+          <h3>32. Sony Aath</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/biswabanglatv.stream/playlist.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuAPORYE4U-A4f9eXLjuZL_mKmu3nde8S1qw&s"
+            alt="Biswa Bangla TV"
+          />
+          <h3>33. Biswa Bangla TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://bozztv.com/rongo/rongo-Maasranga/tracks-v2a1/mono.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/bn/f/f9/%E0%A6%AE%E0%A6%BE%E0%A6%9B%E0%A6%B0%E0%A6%BE%E0%A6%99%E0%A6%BE_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.jpeg"
+            alt="Maasranga TV"
+          />
+          <h3>34. Maasranga TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://live20.bozztv.com/giatvplayout7/giatv-210728/tracks-v1a1/mono.ts.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://s1.dmcdn.net/u/9ktjU1ZRaGF8nGZG9/240x240"
+            alt="Oggy"
+          />
+          <h3>35. Oggy</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BNTRjMDA5ZTQtNWVkMy00OTAwLWI2NmMtYjQxYWM4MTIxYWFhXkEyXkFqcGc@._V1_.jpg"
+            alt="Doraemon"
+          />
+          <h3>36. Doraemon</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://amg01412-xiaomiasia-zee24ghantaa-xiaomi-cvo5n.amagi.tv/ts-eu-w1-n2/playlist/amg01412-xiaomiasia-zee24ghantaa-xiaomi/cb5739176573608d84cb3978d1f04882847b3dcb0e6c886470af4a9765d97800dbe8ae84ae5b910c4c9e1fc061017d360439cd1dd56c49c1da63b820743c4b21fdcde00080dd0d0cb1df11292ca36265299a7369cc350f7bd2ec5a2f803ebe764c53cb017c593f88f258a9754cc59e0a957f39e8fc8b307b24455a9c5a43e6a64cb7fae45e16df3aa2e2011dc42e47fa83439fd401ea85d7528311d723a215cb9af488851582e4315293738aa19d71581fbba43bf9eb5cb8dd96683d99622034713f8482a08e85b81b253938d9ecc2be1f917b672f14f30815ba12915c8c318629d3614a4e7fd2cc9aa5326338b6cd48602be0c1a99cf2263ab268b9d3813bbf54eb94442e3dae4fd930222b91f18172eea74dc4e673d7f501955fb1a8a3c32b175eb990f4aa4b0528450fae1d082442170b871286926cd028e7b5c9a41c0c53574da196548bd3970e702a788f8e5adb0408f9f5bfc38e5e759a3b5b6de16e8f0f5e2cd4623835a50ce98a3069be2308ae3c29b40d66d70cafee6cbd8cf3d12b17f99ecb4bf46aaf920fd1fd0de02d1f5110bcff291014182e9ebe285d7e298376e5d5cbf37e4655bfa083ad96214d6d53205b028fedf063dbdf905b7a38f51377303a406dd56eb04ed00f4e0c2bb36ef0a41b7b88036160a69036535e6381dbf3e6a3d3d94fa170c3c59e687862b90267a1888c0832d55a332d1a64ff150b00e413f8200a/179/1280x720_3046067/index.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://yt3.googleusercontent.com/ou3JhDnH8ChdzRKooH5hGjTRGKpr9dGhi7lv7QW2zgmrnme0HbPKc8qI3yu8ZdI6NZna-CdJFw=s900-c-k-c0x00ffffff-no-rj"
+            alt="Zee 24 Ghanta"
+          />
+          <h3>37. Zee 24 Ghanta</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://tvsen3.aynaott.com/u3LkNQ7UHhFX/tracks-v1a1/mono.ts.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Colors_Bangla.png"
+            alt="Colors Bangla"
+          />
+          <h3>38. Colors Bangla (alt)</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/7ff57cc9046b4c188b51a0d506f36e7f/index_3.m3u8',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnvIN1MX_pSqtpD-1l_vRUat3-XOgeUs3AFQ&s"
+            alt="DD Bangla"
+          />
+          <h3>39. DD Bangla</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://stream.bdstream.site/proxy-m3u8?url=https%3A%2F%2Ftvsen6.aynascope.net%2Fchannel9%2Ftracks-v1a1%2Fmono.ts.m3u8%3Fe%3D1767720420%26token%3D3d993d8b7bee61579a630d2345761417%26u%3D7253343b-d1c8-4e99-9dec-9ce5acb8bdaa',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/f/ff/Channel9_bd.svg/1200px-Channel9_bd.svg.png"
+            alt="Channel 9"
+          />
+          <h3>40. Channel 9</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://stream.bdstream.site/proxy-m3u8?url=https%3A%2F%2Ftvsen6.aynascope.net%2Fglobaltvhd%2Ftracks-v1a1%2Fmono.ts.m3u8%3Fe%3D1767720436%26token%3D891b80de91f0777f8f8d08006598312d%26u%3D7253343b-d1c8-4e99-9dec-9ce5acb8bdaa',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/bn/6/6a/%E0%A6%97%E0%A7%8D%E0%A6%B2%E0%A7%8B%E0%A6%AC%E0%A6%BE%E0%A6%B2_%E0%A6%9F%E0%A7%87%E0%A6%B2%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B6%E0%A6%A8_%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6%E0%A7%87%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B_%E0%A7%A8.png"
+            alt="Global TV"
+          />
+          <h3>41. Global TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://stream.bdstream.site/proxy-m3u8?url=https%3A%2F%2Ftvsen6.aynascope.net%2Fmohonatv%2Ftracks-v1a1%2Fmono.ts.m3u8%3Fe%3D1767720430%26token%3Da5abef145e2c378646cf17db23e0ae7e%26u%3D7253343b-d1c8-4e99-9dec-9ce5acb8bdaa',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/bn/thumb/4/43/%E0%A6%AE%E0%A7%8B%E0%A6%B9%E0%A6%A8%E0%A6%BE_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg/250px-%E0%A6%AE%E0%A7%8B%E0%A6%B9%E0%A6%A8%E0%A6%BE_%E0%A6%9F%E0%A6%BF%E0%A6%AD%E0%A6%BF%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg.png"
+            alt="Mohona TV"
+          />
+          <h3>42. Mohona TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://stream.bdstream.site/proxy-m3u8?url=https%3A%2F%2Ftvsen6.aynascope.net%2Fbijoytv%2Ftracks-v1a1%2Fmono.ts.m3u8%3Fe%3D1767720434%26token%3Dfdf5dc751356d96c75e24c1d1ef7c500%26u%3D7253343b-d1c8-4e99-9dec-9ce5acb8bdaa',
+            )
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Logo_of_Bijoy_TV.svg/1200px-Logo_of_Bijoy_TV.svg.png"
+            alt="Bijoy TV"
+          />
+          <h3>43. Bijoy TV</h3>
+        </button>
+
+        <button
+          type="button"
+          class="channel-btn"
+          onclick="
+            playStream(
+              'https://stream.bdstream.site/proxy-m3u8?url=https%3A%2F%2Ftvsen6.aynascope.net%2Fsatv%2Ftracks-v1a1%2Fmono.ts.m3u8%3Fe%3D1767720414%26token%3D13224f8ef0b7de193f1e1f2cbca4478e%26u%3D7253343b-d1c8-4e99-9dec-9ce5acb8bdaa',
+            )
+          "
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhPV50PQ-faa1HdygPbWLAk82YZdPMo_lHHg&s"
+            alt="SATV"
+          />
+          <h3>44. SATV</h3>
+        </button>
+
+        <!-- Additional repeated News24 entries were removed for brevity; add more buttons as needed -->
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

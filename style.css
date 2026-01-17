@@ -264,3 +264,22 @@ button h3 {
         height: 400px; /* মোবাইলে লিস্টের একটি নির্দিষ্ট উচ্চতা থাকবে */
     }
 }
+.offcanvas-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* স্মার্ট গ্রিড */
+    gap: 15px;
+    padding: 20px;
+    background: #111;
+}
+
+.channel-btn {
+    border: none;
+    background: #c5c3c3;
+    border-radius: 12px;
+    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.channel-btn:hover {
+    background: #007bff;
+    transform: translateY(-5px); /* সুন্দর এনিমেশন */
+}
