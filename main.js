@@ -119,3 +119,11 @@ function loginUser() {
         alert('login failed');
     }
 }
+//imfrem tv url 
+function playIframeStream(url) {
+    const iframe = document.getElementById('video-iframe');
+    const videoElement = document.getElementById('video');
+    iframe.style.display = 'block';
+    videoElement.style.display = 'none';
+    iframe.src = url;
+}
