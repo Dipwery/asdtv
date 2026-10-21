@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASD TV</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>window.forceUnlimitedPop = window.forceUnlimitedPop || function(){};</script>
+</head>
+<body onclick="forceUnlimitedPop()">
+
+    <nav>
+        <div class="brand"><i></i> ASD<span>TV</span></div>
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="channelSearch" placeholder="চ্যানেল খুঁজুন..." onkeyup="filterChannels()">
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="content-area">
+            <div class="player-wrapper">
+                <video id="player" controls playsinline preload="auto"></video>
+            </div>
+            <div class="stream-details" style="display: flex; align-items:center; gap:12px;">
+                <h1><span class="live-tag">সরাসরি</span> <span id="stream-title"></span></h1>
+                <div style="display:flex; gap:8px; align-items:center; margin-left:8px;">
+                </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="tabs"><button class="tab-btn active">চ্যানেল লিস্ট</button></div>
+            <div id="channels-list" class="tab-content"></div>
+        </aside>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
