@@ -317,13 +317,6 @@ aside.sidebar {
     max-width: 100px;
 }
 
-#notice-bar {
-    background: linear-gradient(90deg, #ff004f, #c7003d);
-    color: white;
-    font-weight: bold;
-    padding: 10px 0;
-    text-align: center;
-}
 
 .live-tag {
     background: rgba(255, 255, 255, 0.1);
@@ -357,27 +350,14 @@ video:fullscreen, iframe:fullscreen {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
-#reportButton {
-    margin-left: 20px;
-    padding: 10px 18px;
-    background-color: #d90909;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: inline-block;
-    visibility: visible;
-    opacity: 1;
+
+.brand img {
+    height: 32px;
+    width: auto;
+    vertical-align: middle;
 }
-
-#reportButton:hover {
-    background-color: #ff1111;
-    transform: scale(1.05);
+.brand-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
-
-
-
-

@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="tvlogo.png">
     <script>window.forceUnlimitedPop = window.forceUnlimitedPop || function(){};</script>
 </head>
 <body onclick="forceUnlimitedPop()">
 
     <nav>
-        <div class="brand"><i></i> ASD<span>TV</span></div>
+        <a href="index.html" class="brand-link">
+            <div class="brand" "><i></i> <img src="tvlogo.png" alt="ASD TV Logo"> <span>ASD TV</span></div>
+        </a>
+        
         <div class="search-container">
             <i class="fas fa-search"></i>
             <input type="text" id="channelSearch" placeholder="চ্যানেল খুঁজুন..." onkeyup="filterChannels()">
