@@ -16,59 +16,6 @@ body {
 
 }
 
-
-
-@keyframes ambientShift {
-    0% { transform: translate3d(-2%, 0, 0) scale(1); }
-    100% { transform: translate3d(3%, 2%, 0) scale(1.08); }
-}
-.campus-photo-credit {
-    position: fixed;
-    right: 16px;
-    bottom: 10px;
-    z-index: 2;
-    margin: 0;
-    color: rgba(240, 220, 230, .7);
-    font-size: 10px;
-    letter-spacing: .3px;
-}
-
-.countdown-banner {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 14px 5%;
-    color: #f8eaf0;
-    background: linear-gradient(100deg, rgba(65, 24, 55, .96), rgba(12, 17, 35, .98));
-    border-bottom: 1px solid rgba(240, 189, 199, .2);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, .22);
-}
-.countdown-banner::after {
-    content: "";
-    position: absolute;
-    inset: -80% 0;
-    pointer-events: none;
-    opacity: .18;
-    background: repeating-linear-gradient(105deg, transparent 0 70px, rgba(220, 235, 255, .45) 71px, transparent 72px 135px);
-    animation: bannerRain 6s linear infinite;
-}
-.countdown-heading { display: flex; align-items: center; gap: 12px; }
-.countdown-heading, .countdown-clock, .countdown-status { position: relative; z-index: 1; }
-.countdown-icon { color: #f0bdc7; font-size: 28px; animation: softHeartbeat 2.8s ease-in-out infinite; }
-.countdown-label { margin: 0 0 2px; color: #d9a9b7; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
-.countdown-banner h1 { margin: 0; font-size: 20px; line-height: 1.15; font-weight: 600; }
-.countdown-message { margin: 4px 0 0; color: #c9b2bf; font-size: 11px; }
-.countdown-clock { display: flex; align-items: center; gap: 10px; }
-.countdown-clock > div { min-width: 58px; padding: 7px 8px; text-align: center; background: rgba(255,255,255,.08); border: 1px solid rgba(240,189,199,.16); border-radius: 10px; }
-.countdown-clock strong { display: block; color: #f0bdc7; font-size: 22px; line-height: 1; }
-.countdown-clock span { display: block; margin-top: 4px; color: #c5b2bd; font-size: 9px; letter-spacing: .7px; text-transform: uppercase; }
-.countdown-status { min-width: 150px; margin: 0; color: #c5b2bd; font-size: 11px; text-align: right; }
-@keyframes bannerRain { to { transform: translateY(160px); } }
-@keyframes softHeartbeat { 0%, 100% { transform: scale(1); } 10% { transform: scale(1.15); } 20% { transform: scale(1); } }
-
 nav {
     display: flex;
     justify-content: space-between;
@@ -82,16 +29,6 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-}
-
-@media (max-width: 760px) {
-    .countdown-banner { flex-wrap: wrap; justify-content: center; padding: 14px 4%; }
-    .countdown-status { min-width: 100%; text-align: center; }
-}
-@media (max-width: 430px) {
-    .countdown-clock { width: 100%; justify-content: center; gap: 5px; }
-    .countdown-clock > div { min-width: 52px; padding-inline: 4px; }
-    .countdown-clock strong { font-size: 18px; }
 }
 
 .brand {
@@ -204,14 +141,6 @@ aside.sidebar {
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) transparent;
     min-height: 200px;
-}
-
-#channels-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-#channels-list::-webkit-scrollbar-track {
-    background: transparent;
 }
 
 #channels-list::-webkit-scrollbar-thumb {
@@ -360,4 +289,42 @@ video:fullscreen, iframe:fullscreen {
     display: flex;
     align-items: center;
     text-decoration: none;
+}
+#supportid {
+    background: rgba(18, 20, 32, 0.6);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    color: #ffffff;
+
+}
+input{
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+}
+textarea{
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 100px;
+    border-radius: 4px;
+    resize: vertical;
+}
+button{
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover{
+    background: rgba(110, 123, 109, 0.891);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }

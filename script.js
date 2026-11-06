@@ -583,6 +583,63 @@ if (isTVPage) {
         .eq("username", "1");
     } catch (e) {}
   }
+
+  window.suu = async function () {
+    const channelInput = document.getElementById("channelName");
+    const descriptionInput = document.getElementById("issueDescription");
+    const submitButton = document.getElementById("submitIssue");
+
+    const channelName = channelInput?.value.trim();
+    const description = descriptionInput?.value.trim();
+    if (!channelName || !description) {
+      alert("চ্যানেলের নাম এবং সমস্যার বিবরণ লিখুন।");
+      return;
+    }
+
+    if (!_supabase) {
+      alert("সমস্যা জমা দেওয়া যাচ্ছে না। পরে আবার চেষ্টা করুন।");
+      return;
+    }
+
+    if (submitButton) submitButton.disabled = true;
+    try {
+      const { error } = await _supabase
+        .from("error")
+        .insert({ channel_name: channelName, description });
+
+      if (error) {
+        console.error("Issue submission failed:", {
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+        });
+        const reason = [error.message, error.details, error.hint]
+          .filter(Boolean)
+          .join("\n");
+        alert(
+          reason
+            ? `সমস্যা জমা দেওয়া যায়নি:\n${reason}`
+            : "সমস্যা জমা দেওয়া যায়নি। ব্রাউজারের Console-এ বিস্তারিত দেখুন।",
+        );
+        return;
+      }
+
+      channelInput.value = "";
+      descriptionInput.value = "";
+      alert("সমস্যাটি সফলভাবে জমা হয়েছে।");
+    } catch (error) {
+      console.error("Issue submission failed:", error);
+      alert(
+        `সমস্যা জমা দেওয়া যায়নি: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      );
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  };
+
   if (!window.__tvStatsLoopStarted) {
     window.__tvStatsLoopStarted = true;
     setInterval(dataloop, 1000);
